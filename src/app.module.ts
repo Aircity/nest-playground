@@ -4,12 +4,7 @@ import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
 @Module({
-  imports: [
-    TypeOrmModule.forRoot({
-      type: 'sqlite',
-      database: './database.sql',
-    })  
-  ],
+  imports: [TypeOrmModule.forRoot()],
   controllers: [AppController],
   providers: [AppService],
 })
