@@ -22,10 +22,12 @@
   "dependencies": {
     "@nestjs/common": "^5.1.0",
     "@nestjs/core": "^5.1.0",
+    "@nestjs/swagger": "^2.5.1",
     "@nestjs/typeorm": "^5.2.2",
     "reflect-metadata": "^0.1.12",
     "rxjs": "^6.2.2",
     "sqlite3": "^4.0.3",
+    "swagger-ui-express": "^4.0.1",
     "typeorm": "^0.2.8",
     "typescript": "^3.0.1"
   },
