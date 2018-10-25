@@ -8,7 +8,7 @@ async function bootstrap() {
     .setTitle('Swagger')
     .setDescription('API description')
     .setVersion('1.0')
-    .addTag('photo')
+    .addTag('user')
     .build();
   const document = SwaggerModule.createDocument(app, options);
   SwaggerModule.setup('api', app, document);

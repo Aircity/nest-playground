@@ -1,13 +1,14 @@
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 import { ApiModelProperty } from '@nestjs/swagger';
+import { IsEmail, IsNotEmpty } from 'class-validator';
 
 @Entity()
-export class Photo {
+export class User {
   @PrimaryGeneratedColumn()
   id: number;
 
   @ApiModelProperty()
-  @Column({ length: 500 })
+  @Column({ length: 100 })
   name: string;
 
   @ApiModelProperty()
@@ -15,14 +16,16 @@ export class Photo {
   description: string;
 
   @ApiModelProperty()
+  @IsEmail()
   @Column()
-  filename: string;
+  email: string;
 
   @ApiModelProperty()
+  @IsNotEmpty()
   @Column('int')
-  views: number;
+  password: string;
 
   @ApiModelProperty()
   @Column()
-  isPublished: boolean;
+  isVIP: boolean;
 }
