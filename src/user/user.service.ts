@@ -9,13 +9,22 @@ export class UserService {
     @InjectRepository(User) private readonly userRepository: Repository<User>,
   ) {}
 
-  async create(photo: User) {
-    return await this.userRepository.save(photo);
+  async create(user: User) {
+    return await this.userRepository.save(user);
   }
   async findAll(): Promise<User[]> {
     return await this.userRepository.find();
   }
   async findOne(id): Promise<User> {
     return await this.userRepository.findOne(id);
+  }
+
+  async remove(id): Promise<User[]> {
+    return await this.userRepository.remove(id);
+  }
+
+  async update(id, user: User) {
+    user.id = id;
+    return await this.userRepository.save(id);
   }
 }

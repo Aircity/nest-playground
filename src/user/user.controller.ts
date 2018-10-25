@@ -3,6 +3,8 @@ import {
   Body,
   Get,
   Post,
+  Delete,
+  Patch,
   Param,
   UseInterceptors,
 } from '@nestjs/common';
@@ -38,9 +40,25 @@ export class UserController {
 
   @Get(':id')
   @ApiOperation({
-    title: 'This action returns a user',
+    title: 'This action returns a user based on the ID supplied',
   })
   findOne(@Param('id') id: string): Promise<User> {
     return this.userService.findOne(+id);
+  }
+
+  @Delete(':id')
+  @ApiOperation({
+    title: 'Deletes a  user based on the ID supplied',
+  })
+  remove(@Param('id') id: string): Promise<User[]> {
+    return this.userService.remove(+id);
+  }
+
+  @Patch(':id')
+  @ApiOperation({
+    title: 'Updates a  user based on the ID supplied',
+  })
+  update(@Param('id') id: string, @Body() user: User) {
+    return this.userService.update(+id, user);
   }
 }
