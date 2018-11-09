@@ -6,12 +6,13 @@ import {
   Delete,
   Patch,
   Param,
-  UseInterceptors,
+  UseInterceptors
 } from '@nestjs/common';
 
 import { UserService } from './user.service';
 import { User } from './user.entity';
-import { ApiBearerAuth, ApiUseTags, ApiOperation } from '@nestjs/swagger';
+import { PageHelper } from '../common/dto/page.helper.dto'
+import { ApiBearerAuth, ApiUseTags, ApiOperation, ApiResponse } from '@nestjs/swagger';
 import { LoggingInterceptor } from '../common/interceptors/logging.interceptor';
 import { TransformInterceptor } from '../common/interceptors/transform.interceptor';
 
@@ -34,14 +35,16 @@ export class UserController {
   @ApiOperation({
     title: 'This action returns  all users',
   })
+  @ApiResponse({ status: 200, description: 'User', type: User , isArray: true})   
   findAll(): Promise<User[]> {
     return this.userService.findAll();
   }
 
-  @Get(':id')
+  @Get(':id') 
   @ApiOperation({
     title: 'This action returns a user based on the ID supplied',
   })
+  @ApiResponse({ status: 200, description: 'User', type: User })    
   findOne(@Param('id') id: string): Promise<User> {
     return this.userService.findOne(+id);
   }
@@ -60,5 +63,13 @@ export class UserController {
   })
   update(@Param('id') id: string, @Body() user: User) {
     return this.userService.update(+id, user);
+  }
+
+  @ApiOperation({
+    title: 'This action returns users with pagination',
+  })
+  @Get('/pagination')
+  pagination(@Body() pageHelper: PageHelper) {
+
   }
 }

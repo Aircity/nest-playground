@@ -27,4 +27,10 @@ export class UserService {
     user.id = id;
     return await this.userRepository.save(id);
   }
+
+  async pagination(): Promise<any> {
+    // limit
+    // offset
+    return await this.userRepository.findAndCount()
+  }
 }
