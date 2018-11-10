@@ -2,11 +2,15 @@ import { ApiModelProperty } from '@nestjs/swagger';
 import { IsInt } from 'class-validator';
 
 export class PageHelper {
-  @ApiModelProperty()
+  @ApiModelProperty({
+    example: 1,
+  })
   @IsInt()
-  current: number;
+  pageIndex: number;
 
-  @ApiModelProperty()
+  @ApiModelProperty({
+    example: 20,
+  })
   @IsInt()
-  size: number;  
+  pageSize: number;
 }

@@ -1,5 +1,5 @@
 interface PagehelperInterface {
-  current: number;
-  size: number;
+  pageIndex: number;
+  pageSize: number;
 }
- export default PagehelperInterface;
+export default PagehelperInterface;
