@@ -28,9 +28,9 @@ export class UserService {
     return await this.userRepository.save(id);
   }
 
-  async pagination(): Promise<any> {
-    // limit
-    // offset
-    return await this.userRepository.findAndCount()
+  async pagination(pageHelper): Promise<any> {
+    const { current, size } = pageHelper   
+    const skip = (current -1) * size
+    return await this.userRepository.createQueryBuilder("user").skip(skip).take(size).getMany()
   }
 }

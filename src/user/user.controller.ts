@@ -31,14 +31,15 @@ export class UserController {
     return this.userService.create(user);
   }
 
-  @Get()
-  @ApiOperation({
-    title: 'This action returns  all users',
-  })
-  @ApiResponse({ status: 200, description: 'User', type: User , isArray: true})   
-  findAll(): Promise<User[]> {
-    return this.userService.findAll();
-  }
+  // @Get()
+  // @ApiOperation({
+  //   title: 'This action returns  all users',
+  // })
+  // @ApiResponse({ status: 200, description: 'User', type: User , isArray: true})   
+  // findAll(): Promise<User[]> {
+  //   console.log('eeeee')    
+  //   return this.userService.findAll();
+  // }
 
   @Get(':id') 
   @ApiOperation({
@@ -65,11 +66,11 @@ export class UserController {
     return this.userService.update(+id, user);
   }
 
+  @Post('pagination')
   @ApiOperation({
     title: 'This action returns users with pagination',
   })
-  @Get('/pagination')
-  pagination(@Body() pageHelper: PageHelper) {
-
+  pagination(@Body() pageHelper: PageHelper) : Promise<User[]> {
+    return this.userService.pagination(pageHelper)
   }
 }
