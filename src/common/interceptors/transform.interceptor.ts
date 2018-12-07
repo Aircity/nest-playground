@@ -3,8 +3,9 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 export interface Response<T> {
-  queryResult: T;
+  QueryResult: T;
 }
+
 @Injectable()
 export class TransformInterceptor<T>
   implements NestInterceptor<T, Response<T>> {
@@ -14,10 +15,10 @@ export class TransformInterceptor<T>
   ): Observable<Response<T>> {
     return call$.pipe(
       map(data => ({
-        hasError: false,
-        errorMessage: '',
-        queryResult: data[0],
-        pagenation: {
+        HasError: false,
+        ErrorMessage: '',
+        QueryResult: data[0],
+        Pagenation: {
           totalSize: data[1],
         },
       })),
